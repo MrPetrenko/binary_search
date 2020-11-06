@@ -1,0 +1,55 @@
+using System;
+
+namespace Binary_Search___cshasrp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int[] list = new int[20];
+            Random myrnd = new Random();
+            
+            for (int i = 0; i < list.Length; i++)
+            { list[i] = myrnd.Next(1, 100); }
+
+            Array.Sort(list);
+
+            Console.Write("Sorted list : [");
+
+            for (int i = 0; i < list.Length; i++)
+                Console.Write(list[i] + " ");
+
+            Console.Write("]");
+
+            int lowest = 0;
+            int highest = list.Length - 1;
+            int middle;
+            int item;
+            int index = -1;
+
+            Console.WriteLine("Введи число : ");
+            item = Int32.Parse(Console.ReadLine());
+
+            while ((lowest <= highest) && (index == -1))
+            {
+                middle = (lowest + highest) / 2; 
+
+                if (list[middle] > item)
+                    highest = middle - 1;
+
+                if (list[middle] < item)
+                    lowest = middle + 1;
+
+                if (list[middle] == item)
+                    index = middle;
+            }
+
+            if (index > -1)
+                Console.WriteLine("Элемент " + item + " найден под индексом " + (index + 1));
+            else
+                Console.WriteLine("Item wasn`t found");
+
+            Console.ReadKey();
+        }
+    }
+}
